@@ -1,0 +1,9 @@
+.genreButton{
+    background-color: #77CEE0;
+    /* height: 10px; */
+    width: 80px;
+    padding: 1%;
+    color: white;
+    border-radius: 15px;
+    margin-top: 1%;
+}
