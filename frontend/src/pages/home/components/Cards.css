@@ -1,0 +1,16 @@
+.cards{
+    border: 1px solid grey;
+    width: 450px;
+    margin-left: 1%;
+}
+
+.cards img{
+    width: 300px;
+    height: 300px;
+    padding: 5px;
+}
+
+.cardContent{
+    justify-content: center;
+    margin: auto;
+}
