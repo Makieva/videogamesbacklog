@@ -1,7 +1,8 @@
 import React from "react";
+import './CategButton.css';
 
 const CategButton = () => {
-  return <div>Categorie 1</div>;
+  return <div className="categButton">Categorie 1</div>;
 };
 
 export default CategButton;
