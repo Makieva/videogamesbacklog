@@ -1,10 +1,17 @@
 import React from "react";
-import './GenreButton.css';
+import "./GenreButton.css";
 
-const GenreButton = () => {
-    return (
-        <div className="genreButton">Genre</div>
-    )
-}
+const GenreButton = ({game}) => {
+  console.log(game.genres);
+  return (
+    <div>
+      {game.genres.map((genre, index) => (
+        <div className="genreButton" key={index}>
+          {genre.name}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default GenreButton;

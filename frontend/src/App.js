@@ -22,11 +22,11 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Header/>
-    <Routes>
-    <Route path="/" element={<Home/>}/>
-    <Route path="/test" element={<DetailedPage />}/>
-    </Routes>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/games/:gameId" element={<DetailedPage />} />
+      </Routes>
     </BrowserRouter>
   );
 }

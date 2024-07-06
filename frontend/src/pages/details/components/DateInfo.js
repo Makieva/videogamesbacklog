@@ -1,9 +1,9 @@
 import React from "react";
 import './DateInfo.css';
 
-const DateInfo = () => {
+const DateInfo = ({game}) => {
     return (
-        <div className="dateInfo">10 mai 2017</div>
+        <div className="dateInfo">{game.released}</div>
     )
 }
 
