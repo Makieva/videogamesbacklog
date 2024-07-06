@@ -1,16 +1,18 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import './Cards.css';
 
-const Cards = () => {
-    return (
-      <div className="cards">
-        <div className="cardContent">
-            <img src="https://gocdkeys.fr/images/captures/crow-country-pc-cd-key-1.jpg" alt="illustration du jeu"></img>
-            <h3>Crow Country</h3>
-            <div>date sortie</div>
-        </div>
+const Cards = ({dataGame}) => {
+  return (
+    <div className="cards">
+      <div className="cardContent">
+        <div className="gameImg"><img src={dataGame.background_image} alt="illustration du jeu"></img></div>
+      
+        <Link to={`games/${dataGame.id}`}><h3>{dataGame.name}</h3></Link>
+        <p>{dataGame.released}</p>
       </div>
-    );
+    </div>
+  );
 }
 
 export default Cards;
