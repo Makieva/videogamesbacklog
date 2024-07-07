@@ -1,9 +1,10 @@
 import React from "react";
 import './LoginButton.css';
+import { Link } from "react-router-dom";
 
 const LoginButton = () => {
     return (
-        <div className="loginButton"><a href="/">Se Connecter</a></div>
+        <Link to={`connexion`}><button className="loginButton">Se connecter</button></Link>
     )
 };
 
