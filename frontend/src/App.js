@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Routes, Route, Link, BrowserRouter} from 'react
 
 import Home from "./pages/home/Home";
 import Header from "./componentsShared/Header";
+import GameList from "./pages/home/GameList";
 import DetailedPage from "./pages/details/DetailedPage";
 
 function App() {
@@ -22,7 +23,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/games/:gameId" element={<DetailedPage />} />

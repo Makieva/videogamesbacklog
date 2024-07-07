@@ -1,70 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import Header from "../../componentsShared/Header";
+import GameList from "./GameList";
+import { getGamesBySearch } from "../../api/games";
 import "./Home.css";
-import CategButton from "./components/CategButton";
-import Cards from "./components/Cards";
-import { getGamesList } from "../../api/games";
-import { getGenreList } from "../../api/games";
-import { getGamesFromGenreList } from "../../api/games";
-import CardList from "./components/CardList";
 
 const Home = () => {
+   const [searchValue, setSearchValue] = useState("");
    const [gameList, setGameList] = useState([]);
 
+   console.log(searchValue);
    useEffect(() => {
-    const fetchGames = async () => {
-        const data = await getGamesList();
-        if (data) {
-            setGameList(data.results);
-        }
-    };
+     const fetchGamesBySearch = async () => {
+       if (searchValue) {
+         const data = await getGamesBySearch(searchValue);
+         if (data && data.results) {
+           setGameList(data.results);
+         }
+       }
+     };
+     fetchGamesBySearch();
+   }, [searchValue]);
 
-    fetchGames();
-   }, []);
-
-   const [genreList, setGenreList] = useState([]);
-
-   useEffect(() => {
-    const fetchGenres = async () => {
-      const data = await getGenreList();
-      if(data){
-        setGenreList(data.results);
-      }
-    };
-    fetchGenres();
-   }, []);
-
-   const [selectedGenre, setSelectedGenre] = useState(null);
-
-   useEffect(() => {
-    if(selectedGenre) {
-      const fecthGamesByGenre = async () => {
-        const data = await getGamesFromGenreList(selectedGenre);
-        if(data) {
-          setGameList(data.results);
-        }
-      };
-      fecthGamesByGenre();
-    } else {
-      const fetchGames = async () => {
-        const data = await getGamesList();
-        if(data) {
-          setGameList(data.results);
-        }
-      };
-      fetchGames();
-    }
-   }, [selectedGenre]);
-
-   const handleGenreSelect = (genreSlug) => {
-    setSelectedGenre(genreSlug);
-   };
-
-// console.log(gameList);
-    return (
-      <section>
-        <CategButton genres={genreList} onSelectGenre={handleGenreSelect}></CategButton>
-        <CardList games={gameList}></CardList>
-      </section>
-    );
+   return (
+    <section>
+      <Header onSearch={setSearchValue}></Header>
+      <GameList searchResults={gameList}></GameList>
+    </section>
+   );
 };
+
 export default Home;
