@@ -17,16 +17,16 @@ import Connexion from "./pages/connexion/Connexion";
 function App() {
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    axios
-      .get("/api/hello")
-      .then((response) => {
-        setMessage(response.data.message);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data!", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/hello")
+  //     .then((response) => {
+  //       setMessage(response.data.message);
+  //     })
+  //     .catch((error) => {
+  //       console.error("There was an error fetching the data!", error);
+  //     });
+  // }, []);
 
   return (
     <BrowserRouter>

@@ -68,3 +68,21 @@ export const getGamesBySearch = async (search) => {
     );
   }
 }
+
+/////////API de ma BDD
+
+export const addGameToList = async (listId, gameId, gameName) => {
+  try {
+    const response = await axios.post(
+      "http://localhost/videogamesbacklog/backend/api/addGameToList.php",
+      {
+        listId,
+        gameId,
+        gameName,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error adding game to list", error);
+  }
+};
