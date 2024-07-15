@@ -1,30 +1,16 @@
-// import React from "react";
 
-// const Formulaire = () => {
-//     return (
-//     <>
-//       <form>
-//         <label for="identifiant">Identifiant</label>
-//         <input type="text" name="identifiant" id="identifiant"></input>
-//         <label for="identifiant">Mot de passe</label>
-//         <input type="text" name="mdp" id="mdp"></input>
-
-//         <input type="submit" value='connexion'></input>
-//       </form>
-//     </>
-//     );
-// }
-
-// export default Formulaire;
-
-// src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/AuthContext';
+
 const UserContext = React.createContext();
 
 const Login = () => {
   const [pseudo, setPseudo] = useState('');
   const [password, setPassword] = useState('');
+  const navigate  = useNavigate();
+  const {login} = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +29,12 @@ const Login = () => {
       );
       console.log(data);
       // Store the token and user information in local storage or context
+      // Par exemple, localStorage.setItem('token', data.token);
+
+      login(data.login); //mettre à jour l'etat d'authentification
+
+      // Rediriger vers la page Dashboard après une connexion réussie
+      navigate("/myAccount");
     } catch (error) {
       console.error('Error logging in:', error);
     }
@@ -51,7 +43,7 @@ const Login = () => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        type="pseudo"
+        type="text"
         value={pseudo}
         onChange={(e) => setPseudo(e.target.value)}
         placeholder="Pseudo"
@@ -61,10 +53,10 @@ const Login = () => {
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
+        placeholder="Mot de passe"
         required
       />
-      <button type="submit">Login</button>
+      <button type="submit">Se connecter</button>
     </form>
   );
 };
