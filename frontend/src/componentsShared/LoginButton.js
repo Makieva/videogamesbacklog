@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 
 const LoginButton = () => {
     return (
-        <Link to={`connexion`}><button className="loginButton">Se connecter</button></Link>
+        <Link to={`connexion`}>
+            <button className="loginButton">Se connecter</button>
+        </Link>
     )
 };
 

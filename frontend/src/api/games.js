@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import axiosInstance from "../api/axiosConfig";
 import { Games } from "../models/Games";
 
 export const getGamesList = async () => {
@@ -6,7 +7,7 @@ export const getGamesList = async () => {
   console.log(urlCall);
 
   try {
-    const response = await axios.get(urlCall);
+    const response = await axiosInstance.get(urlCall);
     return response.data;
   } catch (error) {
     console.error("Erreur lors de la récupération des jeux:", error);
@@ -19,7 +20,7 @@ export const getAGame = async (gameId) => {
   const urlCall = `${process.env.REACT_APP_API_URL}/games/${gameId}?key=${process.env.REACT_APP_API_KEY}`;
 
   try {
-    const response = await axios.get(urlCall);
+    const response = await axiosInstance.get(urlCall);
     return response.data;
   } catch (error) {
     console.error("Erreur lors de la récupération du jeu:", error);
@@ -29,7 +30,7 @@ export const getAGame = async (gameId) => {
 export const getGenreList = async () => {
   const urlCall = `${process.env.REACT_APP_API_URL}/genres?key=${process.env.REACT_APP_API_KEY}`;
   try {
-    const response = await axios.get(urlCall);
+    const response = await axiosInstance.get(urlCall);
     return response.data;
   } catch (error) {
     console.error(
@@ -46,7 +47,7 @@ export const getGamesFromGenreList = async (genreId) => {
   console.log("games from list");
   console.log(urlCall);
   try {
-    const response = await axios.get(urlCall);
+    const response = await axiosInstance.get(urlCall);
     console.log(response);
     return response.data;
   } catch (error) {
@@ -60,7 +61,7 @@ export const getGamesFromGenreList = async (genreId) => {
 export const getGamesBySearch = async (search) => {
   const urlCall = `${process.env.REACT_APP_API_URL}/games?key=${process.env.REACT_APP_API_KEY}&search=${search}`;
   try{
-    const response = await axios.get(urlCall);
+    const response = await axiosInstance.get(urlCall);
     return response.data;
   } catch (error) {
     console.error(
@@ -73,7 +74,7 @@ export const getGamesBySearch = async (search) => {
 
 export const addGameToList = async (listId, gameId, gameName) => {
   try {
-    const response = await axios.post(
+    const response = await axiosInstance.post(
       "http://localhost/videogamesbacklog/backend/api/addGameToList.php",
       {
         listId,
